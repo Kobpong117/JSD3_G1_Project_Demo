@@ -6,18 +6,10 @@ import InputActivityForm from '../input-activity-form/InputActivityForm'
 import useForm from '../../hooks/useForm'
 import validate from '../input-activity-form/validateInfo'
 
+
 function ActivityForm(props) {
-
-    const { handleChange, inputValues } = useForm()
-    // const [inputValues, setInputValues] = useState({
-    //   activityName: "",
-    //   description: "",
-    //   activityType: "",
-    //   duration: "",
-    //   date: ""
-    // })
-
-    const [invalid, setInvalid] = useState({})
+    const { submitForm } = props
+    const { handleChange, inputValues, handleSubmit, invalid } = useForm(submitForm, validate)
 
     const thisDate = new Date()
     const today = `${thisDate.getFullYear()}-${thisDate.getMonth() + 1}-${thisDate.getDate()}`
@@ -28,8 +20,6 @@ function ActivityForm(props) {
         name: "activityName",
         type: "text",
         label: "Name Your Activity",
-        placeholder: "Running in the central park",
-        errorMessage: "Please set an activity name",
         pattern: "RUN",
         required: true
       },
@@ -39,7 +29,6 @@ function ActivityForm(props) {
         type: "textarea",
         label: "Description",
         placeholder: "Put any detail here..",
-        errorMessage: "Please provide some description",
         rows: 3,
         required: true
       },
@@ -48,7 +37,6 @@ function ActivityForm(props) {
         name: "activityType",
         type: "select",
         label: "Activity Type",
-        errorMessage: "Please select an activity type",
         required: true
       },
       {
@@ -59,7 +47,6 @@ function ActivityForm(props) {
         placeholder: "30",
         min: 10,
         max: 360,
-        errorMessage: "Please set the duration time for you activity between 10 - 360 minute",
         required: true
       },
       {
@@ -68,28 +55,10 @@ function ActivityForm(props) {
         type: "date",
         label: "Select Date",
         min: today,
-        errorMessage: "Please select the date for your activity",
         required: true
       },
     ]
 
-    const handleSubmit = (e) => {
-      e.preventDefault()
-      
-      console.log(inputValues)
-      console.log(validate(inputValues))
-      
-    }
-
-    // const handleChange = (e) => {
-    //   const { name, value } = e.target
-    //   setInputValues(prevValues => {
-    //     return {
-    //       ...prevValues,
-    //       [name]: value
-    //     }
-    //   })
-    // }
 
   return (
     <>
@@ -107,7 +76,7 @@ function ActivityForm(props) {
                 {...input} 
                 onChange={handleChange}
                 value={inputValues[input.name]}
-                // isInvalid={isInvalid}
+                invalid={invalid[input.name]}
               />
             ))}
             
@@ -116,7 +85,7 @@ function ActivityForm(props) {
                 Close
               </Button>
               <Button variant="primary" type="submit" >
-                Save Changes
+                Apply
               </Button>
             </Modal.Footer>
           </Form>

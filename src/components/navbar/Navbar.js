@@ -3,6 +3,12 @@ import logo from '../../images/logo.png'
 import './navbar.css'
 
 const Navbar = (props) => {
+
+  const handleAddBtn = () => {
+    props.setShowForm(true)
+    props.setIsFormSubmitted(false)
+  }
+
   return (
     <header className='app-header'>
       <nav className="navbar navbar-expand-lg bg-light">
@@ -18,7 +24,7 @@ const Navbar = (props) => {
                 <button 
                   className="btn btn-info text-white py-2" 
                   aria-current="page" href="#"
-                  onClick={() => props.setShowForm(true)} 
+                  onClick={handleAddBtn}
                 >+ Add Activity</button>
               </li>
               <li className="nav-item dropdown px-5">

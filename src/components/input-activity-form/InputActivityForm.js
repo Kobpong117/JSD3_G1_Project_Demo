@@ -50,8 +50,9 @@ const InputActivityForm = (props) => {
                     name={props.name}
                 />
         }
-        {/* {console.log('inside input form field. IsInvalid is: ', props.isInvalid)} */}
-        { props.isInvalid && <span className='text-danger small invalid'>{props.errorMessage}</span> } 
+
+        { props.invalid && <span className='text-danger small invalid'>{props.invalid}</span> } 
+        
     </div>
                 
     

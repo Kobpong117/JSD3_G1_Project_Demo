@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import InputActivityForm from '../input-activity-form/InputActivityForm';
+import React, { useState } from 'react'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Modal from 'react-bootstrap/Modal'
+import InputActivityForm from '../input-activity-form/InputActivityForm'
+import useForm from '../../hooks/useForm'
 import validate from '../input-activity-form/validateInfo'
 
 function ActivityForm(props) {
-    const [inputValues, setInputValues] = useState({
-      activityName: "",
-      description: "",
-      activityType: "",
-      duration: "",
-      date: ""
-    })
+
+    const { handleChange, inputValues } = useForm()
+    // const [inputValues, setInputValues] = useState({
+    //   activityName: "",
+    //   description: "",
+    //   activityType: "",
+    //   duration: "",
+    //   date: ""
+    // })
 
     const [invalid, setInvalid] = useState({})
 
@@ -73,20 +76,20 @@ function ActivityForm(props) {
     const handleSubmit = (e) => {
       e.preventDefault()
       
+      console.log(inputValues)
       console.log(validate(inputValues))
       
     }
 
-    const handleChange = (e) => {
-      const { name, value } = e.target
-      setInputValues(prevValues => {
-        return {
-          ...prevValues,
-          [name]: value
-        }
-      })
-     
-    }
+    // const handleChange = (e) => {
+    //   const { name, value } = e.target
+    //   setInputValues(prevValues => {
+    //     return {
+    //       ...prevValues,
+    //       [name]: value
+    //     }
+    //   })
+    // }
 
   return (
     <>

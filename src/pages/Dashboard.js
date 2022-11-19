@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/navbar/Navbar'
 import ActivityForm from '../components/activity-form/ActivityForm'
+import ActivityCard from '../components/activity-card/ActivityCard'
 
 
 const Dashboard = () => {
     const [showForm, setShowForm] = useState(false)
     const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+      setData(JSON.parse(localStorage.getItem('cards')) || [])
+    }, [])
 
     const submitForm = () => {
       setIsFormSubmitted(true)
@@ -18,14 +24,25 @@ const Dashboard = () => {
             setIsFormSubmitted={setIsFormSubmitted}
         />
 
-        {!isFormSubmitted
-          ? <ActivityForm 
-              showForm={showForm}
-              setShowForm={setShowForm}
-              submitForm={submitForm}
-            /> 
-          : <div className='display-3'>Hello Dev</div>
+        {!isFormSubmitted &&
+          <ActivityForm 
+            showForm={showForm}
+            setShowForm={setShowForm}
+            submitForm={submitForm}
+          /> 
         }
+
+        {!data.length
+          ? <h1 className='display-1 text-center text-muted'>Create New Activity</h1>
+          : data.map(item => {
+            <ActivityCard 
+              key={item.id}
+              item={item}
+            />
+          })       
+        }
+
+        
                
     </div>
   )

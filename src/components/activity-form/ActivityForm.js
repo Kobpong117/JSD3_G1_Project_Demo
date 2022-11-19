@@ -8,7 +8,7 @@ import validate from '../input-activity-form/validateInfo'
 
 
 function ActivityForm(props) {
-    const { submitForm } = props
+    const { submitForm, showForm, setShowForm } = props
     const { handleChange, inputValues, handleSubmit, invalid } = useForm(submitForm, validate)
 
     const thisDate = new Date()
@@ -59,10 +59,9 @@ function ActivityForm(props) {
       },
     ]
 
-
   return (
     <>
-      <Modal show={props.showForm} onHide={() => props.setShowForm(false)}>
+      <Modal show={showForm} onHide={() => setShowForm(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Setting An Activity</Modal.Title>
         </Modal.Header>
@@ -81,10 +80,10 @@ function ActivityForm(props) {
             ))}
             
             <Modal.Footer>
-              <Button variant="secondary" onClick={() => props.setShowForm(false)}>
+              <Button variant="secondary" onClick={() => setShowForm(false)}>
                 Close
               </Button>
-              <Button variant="primary" type="submit" >
+              <Button variant="primary" type="submit">
                 Apply
               </Button>
             </Modal.Footer>

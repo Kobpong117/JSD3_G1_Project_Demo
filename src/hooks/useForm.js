@@ -50,7 +50,7 @@ const useForm = (callback, validate) => {
         savedData.push(newData)
         localStorage.setItem('cards', JSON.stringify(savedData))
         
-        
+        window.location.reload()
     }
 
     useEffect(() => {

@@ -17,6 +17,7 @@ const Dashboard = () => {
       setIsFormSubmitted(true)
     }
 
+    
   return (
     <div>
         <Navbar 
@@ -32,18 +33,17 @@ const Dashboard = () => {
           /> 
         }
 
-        {!data.length
-          ? <h1 className='display-1 text-center text-muted'>Create New Activity</h1>
-          : data.map(item => {
-            <ActivityCard 
-              key={item.id}
-              item={item}
-            />
-          })       
-        }
-
-        
-               
+        <div className='row justify-content-start mx-0 p-5'>
+          {!data.length
+            ? <h1 className='display-1 text-center text-muted'>Create New Activity</h1>
+            : data.map(item => (
+                <ActivityCard 
+                  key={item.id}
+                  item={item}
+                />
+              ))             
+          }
+        </div>        
     </div>
   )
 }

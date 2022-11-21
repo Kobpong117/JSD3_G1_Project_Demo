@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './inputForm.css'
-import validate from './validateInfo'
+
 
 const InputActivityForm = (props) => {
-    const [focused, setFocused] = useState(false)
-
-    const handleFocus = (e) => { 
-        setFocused(true)
-    }
 
   return (
     
@@ -24,8 +19,6 @@ const InputActivityForm = (props) => {
                     max={props.max}
                     onChange={props.onChange}
                     name={props.name}
-                    onBlur={handleFocus}
-                    focused={focused.toString()}
                 />
 
             :   props.type === 'select'
@@ -36,11 +29,11 @@ const InputActivityForm = (props) => {
                     name={props.name}
                 >
                     <option value=''>--Choose Activity--</option>
-                    <option value='run'>Running</option>
-                    <option value='bicycle'>Riding Bicycle</option>
-                    <option value='swim'>Swimming</option>
-                    <option value='walk'>Walking</option>
-                    <option value='hike'>Hiking</option>
+                    <option value='running'>Running</option>
+                    <option value='biking'>Riding Bicycle</option>
+                    <option value='swimming'>Swimming</option>
+                    <option value='walking'>Walking</option>
+                    <option value='hiking'>Hiking</option>
                 </select>
 
             :   <textarea
@@ -60,50 +53,3 @@ const InputActivityForm = (props) => {
 }
 
 export default InputActivityForm
-
-
-
-            {/* <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Name Your Activity</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Running in the central park"
-                    autoFocus
-                />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Put any detail here.."/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Activity Type</Form.Label>
-                <Form.Select 
-                    aria-label="Default select"
-                    // value={props.activity}
-                    // onChange={(e) => props.setActivity(e.target.value)}
-                >
-                    <option value=''>--Choose Activity--</option>
-                    <option value='run'>Runing</option>
-                    <option value='bicycle'>Riding Bicycle</option>
-                    <option value='swim'>Swimming</option>
-                    <option value='walk'>Walking</option>
-                    <option value='hike'>Hiking</option>
-                </Form.Select>
-                <span>I'm an error message</span>     
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Duration (Minimum 10 minute)</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="30"
-                min="10"
-                max="360"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Select Date</Form.Label>
-              <Form.Control
-                type="date"
-                min={today}
-              />
-            </Form.Group> */}
